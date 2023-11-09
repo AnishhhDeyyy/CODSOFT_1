@@ -1,0 +1,51 @@
+public class NumberGuessingGame {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("WELCOME TO NUMBER GUESSING GAME");
+        System.out.println("INSTRUCTION:-");
+        System.out.println("1. Here The MAXNOATTEMPTS is 10 within 10 attempt you have to guess the number otherwise You have to playagain");
+        System.out.println("2. If your guess is correct then you will get 10 points");
+        System.out.println("3. You Can play this as many times as  you want");
+        System.out.println("4. Here Round Means how many attempts you have taken");
+        System.out.println("Enter the minRange");
+        int minrange = sc.nextInt();
+        System.out.println("Enter the maxRange");
+        int maxrange = sc.nextInt();
+        Random rand = new Random();
+        int maxnoofattempts = 10;
+        boolean playagain = true;
+        int countroundno = 1;
+        int score = 0;
+        while (playagain) {
+            System.out.println("RoundNo"+countroundno);
+            countroundno++;
+            boolean isabletofind = false;
+            int guessnumber = rand.nextInt(maxrange - minrange + 1) + minrange;
+            int countnoofattempts = 0;
+            System.out.println("RandomNo has been generated");
+            System.out.println("Now guess the Randomnumber");
+            System.out.println(guessnumber);
+            while (countnoofattempts != maxnoofattempts) {
+                int userguess = sc.nextInt();
+                if (userguess > guessnumber) {
+                    System.out.println("too high!");
+                } else if (userguess < guessnumber) {
+                    System.out.println("too low!");
+                } else {
+                    System.out.println("Yayy Your guess is correct");
+                    score = score+10;
+                    isabletofind = true;
+                    break;
+                }
+                countnoofattempts++;
+            }
+            if(isabletofind == false) {
+                System.out.println("You are not able to guess the number");
+            }
+            System.out.println("Do you want to play again" + " "+"If you want to continue then press true(YES)"+" "+ "If you dont want to continue the press false(NO)");
+            playagain = sc.nextBoolean();
+        }
+        System.out.println("You have played"+" "+countroundno+" "+"round");
+        System.out.println("Your total score is"+" "+score);
+    }
+}
